@@ -9,6 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_bloc: ^8.1.4
+  google_fonts: ^6.2.1
+  yandex_mapkit: ^3.4.0
 
 dev_dependencies:
   flutter_test:
@@ -17,3 +20,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+  - assets/auth_screen/backImage.png
+  - assets/auth_screen/carIcon.png
