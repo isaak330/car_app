@@ -41,36 +41,46 @@ class _AuthScreenState extends State<AuthScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 35),
               child: Column(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child: ShokoUIModernTextField(
-                      controller: _email,
-                      isOutline: false,
-                      enableColor: inactiveInput,
-                      focusColor: activeEmptyInput,
-                      label: 'Email',
-                      labelTextStyle: GoogleFonts.manrope(
-                          textStyle: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              letterSpacing: -0.5)),
-                    ),
+                  BlocBuilder<UserBloc, UserState>(
+                    builder: (context, state) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(30),
+                        child: ShokoUIModernTextField(
+                          controller: _email,
+                          isOutline: false,
+                          enableColor: inactiveInput,
+                          focusColor: activeEmptyInput,
+                          label: 'Email',
+                          labelTextStyle: GoogleFonts.manrope(
+                              textStyle: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  letterSpacing: -0.5)),
+                        ),
+                      );
+                    },
                   ),
                   const SizedBox(height: 16),
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(30),
-                    child: ShokoUIModernTextField(
-                      controller: _password,
-                      isOutline: false,
-                      enableColor: inactiveInput,
-                      focusColor: activeEmptyInput,
-                      label: 'Пароль',
-                      labelTextStyle: GoogleFonts.manrope(
-                          textStyle: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              letterSpacing: -0.5)),
-                    ),
+                  BlocBuilder<UserBloc, UserState>(
+                    builder: (context, state) {
+                      return ClipRRect(
+                        borderRadius: BorderRadius.circular(30),
+                        child: ShokoUIModernTextField(
+                          controller: _password,
+                          isOutline: false,
+                          enableColor: state is UserLoginErrorState
+                              ? errorInpurt
+                              : inactiveInput,
+                          focusColor: activeEmptyInput,
+                          label: 'Пароль',
+                          labelTextStyle: GoogleFonts.manrope(
+                              textStyle: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  letterSpacing: -0.5)),
+                        ),
+                      );
+                    },
                   ),
                   const Gap(40),
                   Padding(
@@ -89,7 +99,7 @@ class _AuthScreenState extends State<AuthScreen> {
                         return GestureDetector(
                           onTap: () {
                             context.read<UserBloc>().add(UserLoginEvent(
-                                email: _email.text, password: _email.text));
+                                email: _email.text, password: _password.text));
                           },
                           child: Container(
                             alignment: Alignment.center,
@@ -97,14 +107,22 @@ class _AuthScreenState extends State<AuthScreen> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(30),
                                 color: mainColor),
-                            child: Text(
-                              'Войти',
-                              style: GoogleFonts.manrope(
-                                  textStyle: const TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 14,
-                                      color: Colors.white)),
-                            ),
+                            child: state is UserLoginingState
+                                ? const SizedBox(
+                                    height: 15,
+                                    width: 15,
+                                    child: CircularProgressIndicator(
+                                      backgroundColor: Colors.white,
+                                    ),
+                                  )
+                                : Text(
+                                    'Войти',
+                                    style: GoogleFonts.manrope(
+                                        textStyle: const TextStyle(
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: 14,
+                                            color: Colors.white)),
+                                  ),
                           ),
                         );
                       },
@@ -121,7 +139,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               textStyle: const TextStyle(
                                   fontWeight: FontWeight.w400, fontSize: 12)),
                         ),
-                        GestureDetector(
+                        InkWell(
                           onTap: () {
                             print('reg');
                           },

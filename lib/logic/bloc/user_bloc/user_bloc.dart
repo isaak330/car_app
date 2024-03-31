@@ -12,12 +12,10 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   _onLogin(UserLoginEvent event, Emitter<UserState> state) async {
     emit(UserLoginingState());
-    final result = AuthRepo.logIn(event.email, event.password);
+    final result = await AuthRepo.logIn(event.email, event.password);
     if (result == true) {
-      print(1111111);
       emit(UserLoginSuccesState());
     } else {
-      print(222222222);
       emit(UserLoginErrorState());
     }
   }
