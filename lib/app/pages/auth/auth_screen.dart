@@ -1,3 +1,4 @@
+import 'package:car_app/app/pages/auth/register_screen.dart';
 import 'package:car_app/app/widgets/auth_screen/logo_widget.dart';
 import 'package:car_app/app/widgets/map_widget.dart';
 import 'package:car_app/const/colors.dart';
@@ -91,7 +92,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const MapWidget()),
+                                  builder: (context) => const RegisterScreen()),
                               (route) => false);
                         }
                       },

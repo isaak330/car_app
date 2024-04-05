@@ -1,26 +1,27 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
-import 'package:shoko_ui/shoko_ui.dart';
 
 class AuthRepo {
   static Future logIn(String email, String pass) async {
-    final Map<String, String> data = {
-      "email": email,
-      "password": pass,
-    };
-    print(data);
-    Response response = await Dio(BaseOptions(
+    var response = await Dio(BaseOptions(
       validateStatus: (status) {
         switch (status) {
-          case 201:
-          case 202:
+          case 404:
+            return true;
           case 401:
-          case 402:
+            return true;
+          case 202:
+            return true;
+          case 400:
             return true;
           default:
             return false;
         }
       },
-    )).post('https://carrentino.ru/users/api/token/', data: data);
+    )).post('https://carrentino.ru/users/api/token/',
+        data: {"email": email, "password": pass});
+    print(response.data);
     if (response.statusCode == 202 || response.statusCode == 201) {
       print('good');
       return true;
