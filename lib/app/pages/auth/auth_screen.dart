@@ -2,7 +2,7 @@ import 'package:car_app/app/pages/auth/register_screen.dart';
 import 'package:car_app/app/widgets/auth_screen/logo_widget.dart';
 import 'package:car_app/app/widgets/map_widget.dart';
 import 'package:car_app/const/colors.dart';
-import 'package:car_app/logic/bloc/user_bloc/user_bloc.dart';
+import 'package:car_app/logic/bloc/auth_bloc/auth_bloc.dart';
 import 'package:car_app/logic/repositories/auth_repo.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -28,136 +28,160 @@ class _AuthScreenState extends State<AuthScreen> {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const LogoWidget(),
-          Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: Text('Вход',
-                  style: GoogleFonts.manrope(
-                      textStyle: const TextStyle(
-                          fontSize: 30,
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: -0.4)))),
+          const LogoWidget(
+            txt: 'Вход',
+          ),
           const SizedBox(height: 24),
+          BlocBuilder<AuthBloc, AuthState>(
+            builder: (context, state) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 35),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: ShokoUIModernTextField(
+                    controller: _email,
+                    isOutline: false,
+                    enableColor: state is AuthLoginErrorState
+                        ? errorInpurt
+                        : inactiveInput,
+                    focusColor: activeEmptyInput,
+                    label: 'Email',
+                    labelTextStyle: GoogleFonts.manrope(
+                        textStyle: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: -0.5)),
+                  ),
+                ),
+              );
+            },
+          ),
+          const SizedBox(height: 16),
+          BlocBuilder<AuthBloc, AuthState>(
+            builder: (context, state) {
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 35),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(30),
+                  child: ShokoUIModernTextField(
+                    controller: _password,
+                    isOutline: false,
+                    enableColor: state is AuthLoginErrorState
+                        ? errorInpurt
+                        : inactiveInput,
+                    focusColor: activeEmptyInput,
+                    label: 'Пароль',
+                    labelTextStyle: GoogleFonts.manrope(
+                        textStyle: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: -0.5)),
+                  ),
+                ),
+              );
+            },
+          ),
+          BlocBuilder<AuthBloc, AuthState>(
+            builder: (context, state) {
+              if (state is AuthLoginErrorState) {
+                return Center(
+                  child: Column(
+                    children: [
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        'Неверный Email или пароль',
+                        style: GoogleFonts.manrope(
+                            textStyle: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.red)),
+                      ),
+                    ],
+                  ),
+                );
+              } else {
+                return const SizedBox();
+              }
+            },
+          ),
+          const Gap(40),
           Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 35),
-              child: Column(
-                children: [
-                  BlocBuilder<UserBloc, UserState>(
-                    builder: (context, state) {
-                      return ClipRRect(
+            padding: const EdgeInsets.symmetric(horizontal: 67),
+            child: BlocConsumer<AuthBloc, AuthState>(
+              listener: (context, state) {
+                if (state is AuthLoginSuccesState) {
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const RegisterScreen()),
+                      (route) => false);
+                }
+              },
+              builder: (context, state) {
+                return GestureDetector(
+                  onTap: () {
+                    if (_email.text.isNotEmpty && _password.text.isNotEmpty) {
+                      context.read<AuthBloc>().add(AuthLoginEvent(
+                          email: _email.text, password: _password.text));
+                    }
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 46,
+                    decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        child: ShokoUIModernTextField(
-                          controller: _email,
-                          isOutline: false,
-                          enableColor: inactiveInput,
-                          focusColor: activeEmptyInput,
-                          label: 'Email',
-                          labelTextStyle: GoogleFonts.manrope(
-                              textStyle: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: -0.5)),
-                        ),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 16),
-                  BlocBuilder<UserBloc, UserState>(
-                    builder: (context, state) {
-                      return ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
-                        child: ShokoUIModernTextField(
-                          controller: _password,
-                          isOutline: false,
-                          enableColor: state is UserLoginErrorState
-                              ? errorInpurt
-                              : inactiveInput,
-                          focusColor: activeEmptyInput,
-                          label: 'Пароль',
-                          labelTextStyle: GoogleFonts.manrope(
-                              textStyle: const TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  letterSpacing: -0.5)),
-                        ),
-                      );
-                    },
-                  ),
-                  const Gap(40),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 32),
-                    child: BlocConsumer<UserBloc, UserState>(
-                      listener: (context, state) {
-                        if (state is UserLoginSuccesState) {
-                          Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const RegisterScreen()),
-                              (route) => false);
-                        }
-                      },
-                      builder: (context, state) {
-                        return GestureDetector(
-                          onTap: () {
-                            context.read<UserBloc>().add(UserLoginEvent(
-                                email: _email.text, password: _password.text));
-                          },
-                          child: Container(
-                            alignment: Alignment.center,
-                            height: 46,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(30),
-                                color: mainColor),
-                            child: state is UserLoginingState
-                                ? const SizedBox(
-                                    height: 15,
-                                    width: 15,
-                                    child: CircularProgressIndicator(
-                                      backgroundColor: Colors.white,
-                                    ),
-                                  )
-                                : Text(
-                                    'Войти',
-                                    style: GoogleFonts.manrope(
-                                        textStyle: const TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                            fontSize: 14,
-                                            color: Colors.white)),
-                                  ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                  const Gap(16),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 38),
-                    child: Row(
-                      children: [
-                        Text(
-                          'Нет аккаунта? ',
-                          style: GoogleFonts.manrope(
-                              textStyle: const TextStyle(
-                                  fontWeight: FontWeight.w400, fontSize: 12)),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            print('reg');
-                          },
-                          child: Text(
-                            'Зарегестрироваться',
+                        color: mainColor),
+                    child: state is AuthLoginingState
+                        ? const SizedBox(
+                            height: 15,
+                            width: 15,
+                            child: CircularProgressIndicator(
+                              backgroundColor: Colors.white,
+                            ),
+                          )
+                        : Text(
+                            'Войти',
                             style: GoogleFonts.manrope(
                                 textStyle: const TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 12,
-                                    color: mainColor)),
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14,
+                                    color: Colors.white)),
                           ),
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ))
+                  ),
+                );
+              },
+            ),
+          ),
+          const Gap(16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Нет аккаунта? ',
+                style: GoogleFonts.manrope(
+                    textStyle: const TextStyle(
+                        fontWeight: FontWeight.w400, fontSize: 12)),
+              ),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const RegisterScreen()));
+                },
+                child: Text(
+                  'Зарегестрироваться',
+                  style: GoogleFonts.manrope(
+                      textStyle: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12,
+                          color: mainColor)),
+                ),
+              )
+            ],
+          )
         ]),
       ),
     );

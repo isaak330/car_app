@@ -5,18 +5,18 @@ import 'package:meta/meta.dart';
 part 'user_event.dart';
 part 'user_state.dart';
 
-class UserBloc extends Bloc<UserEvent, UserState> {
-  UserBloc() : super(UserInitial()) {
-    on<UserLoginEvent>(_onLogin);
+class AuthBloc extends Bloc<AuthEvent, AuthState> {
+  AuthBloc() : super(AuthInitial()) {
+    on<AuthLoginEvent>(_onLogin);
   }
 
-  _onLogin(UserLoginEvent event, Emitter<UserState> state) async {
-    emit(UserLoginingState());
+  _onLogin(AuthLoginEvent event, Emitter<AuthState> state) async {
+    emit(AuthLoginingState());
     final result = await AuthRepo.logIn(event.email, event.password);
     if (result == true) {
-      emit(UserLoginSuccesState());
+      emit(AuthLoginSuccesState());
     } else {
-      emit(UserLoginErrorState());
+      emit(AuthLoginErrorState());
     }
   }
 }
