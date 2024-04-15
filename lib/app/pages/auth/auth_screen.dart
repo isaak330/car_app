@@ -20,6 +20,12 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
+  bool _visible = true;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,6 +70,19 @@ class _AuthScreenState extends State<AuthScreen> {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(30),
                   child: ShokoUIModernTextField(
+                    obscureText: _visible,
+                    suffix: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _visible = !_visible;
+                        });
+                      },
+                      child: Icon(
+                        _visible ? Icons.visibility_off : Icons.visibility,
+                        size: 22,
+                        color: Colors.grey,
+                      ),
+                    ),
                     controller: _password,
                     isOutline: false,
                     enableColor: state is AuthLoginErrorState
@@ -115,7 +134,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const RegisterScreen()),
+                          builder: (context) => const MapWidget()),
                       (route) => false);
                 }
               },

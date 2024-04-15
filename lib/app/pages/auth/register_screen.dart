@@ -1,6 +1,7 @@
 import 'package:car_app/app/pages/auth/auth_screen.dart';
 import 'package:car_app/app/widgets/auth_screen/logo_widget.dart';
 import 'package:car_app/const/colors.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -19,6 +20,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password1 = TextEditingController();
   final TextEditingController _password2 = TextEditingController();
+  late bool validMail = true;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +28,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const LogoWidget(
               txt: 'Регистрация',
@@ -55,6 +58,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(30),
                 child: ShokoUIModernTextField(
+                  onChange: (value) {
+                    validMail = EmailValidator.validate(_email.text);
+                  },
                   controller: _email,
                   isOutline: false,
                   enableColor: inactiveInput,
@@ -68,6 +74,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 ),
               ),
             ),
+            validMail
+                ? Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 48, vertical: 2),
+                    child: Text(
+                      'Неверный формат Email',
+                      style: GoogleFonts.manrope(
+                          textStyle: const TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.red)),
+                    ),
+                  )
+                : Container(),
             const SizedBox(height: 16),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 35),

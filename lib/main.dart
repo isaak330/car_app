@@ -22,7 +22,7 @@ class _MainAppState extends State<MainApp> {
     return BlocProvider(
       create: (context) => AuthBloc(),
       child: const MaterialApp(
-          debugShowCheckedModeBanner: false, home: RegisterScreen()),
+          debugShowCheckedModeBanner: false, home: AuthScreen()),
     );
   }
 }

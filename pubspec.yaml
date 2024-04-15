@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   dio: ^5.4.2+1
+  email_validator: ^2.1.17
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.4
