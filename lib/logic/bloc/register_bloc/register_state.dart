@@ -10,3 +10,5 @@ final class RegisterWaitState extends RegisterState {}
 final class RegisterSuccessState extends RegisterState {}
 
 final class RegisterErrorState extends RegisterState {}
+
+final class RegisterUserExistState extends RegisterState {}

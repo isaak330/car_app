@@ -25,7 +25,7 @@ class AuthRepo {
     if (response.statusCode == 202 || response.statusCode == 201) {
       print('good');
       return true;
-    } else if (response.statusCode == 400) {
+    } else {
       print('bad');
       return false;
     }

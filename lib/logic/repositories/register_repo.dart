@@ -28,6 +28,8 @@ class RegisterRepo {
     });
     if (response.statusCode == 200 || response.statusCode == 201) {
       return true;
+    } else if (response.statusCode == 400) {
+      return 1;
     } else {
       return false;
     }

@@ -15,6 +15,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         event.email, event.name, event.lName, event.pass);
     if (result == true) {
       emit(RegisterSuccessState());
+    } else if (result == 1) {
+      emit(RegisterUserExistState());
     } else {
       emit(RegisterErrorState());
     }
