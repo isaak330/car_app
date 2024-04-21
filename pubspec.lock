@@ -311,10 +311,10 @@ packages:
     dependency: "direct main"
     description:
       name: shoko_ui
-      sha256: "34943246fb77317efc27d3eaa45c6f88553be8886692e2f292378e450fdffa59"
+      sha256: "900fa77693fc64b4bdec7f55d1eb906a77e0f7f97e40f6df7c463f6dde16ef74"
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.13+1"
+    version: "0.0.14"
   sky_engine:
     dependency: transitive
     description: flutter
