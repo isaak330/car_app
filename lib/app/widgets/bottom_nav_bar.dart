@@ -1,6 +1,6 @@
 import 'package:car_app/app/pages/home/home_screen.dart';
 import 'package:car_app/app/pages/user/user_screen.dart';
-import 'package:car_app/app/widgets/map_widget.dart';
+import 'package:car_app/app/widgets/home_screen/map_widget.dart';
 import 'package:car_app/app/widgets/nav_icon.dart';
 import 'package:car_app/const/colors.dart';
 import 'package:flutter/material.dart';

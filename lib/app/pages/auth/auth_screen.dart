@@ -1,6 +1,6 @@
 import 'package:car_app/app/pages/auth/register_screen.dart';
 import 'package:car_app/app/widgets/auth_screen/logo_widget.dart';
-import 'package:car_app/app/widgets/map_widget.dart';
+import 'package:car_app/app/widgets/home_screen/map_widget.dart';
 import 'package:car_app/const/colors.dart';
 import 'package:car_app/logic/bloc/auth_bloc/auth_bloc.dart';
 import 'package:car_app/logic/repositories/auth_repo.dart';

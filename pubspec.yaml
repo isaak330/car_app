@@ -7,6 +7,7 @@ environment:
   sdk: '>=3.3.1 <4.0.0'
 
 dependencies:
+  animated_toggle_switch: ^0.8.2
   dio: ^5.4.2+1
   email_validator: ^2.1.17
   flutter:
@@ -40,4 +41,9 @@ flutter:
   - assets/user_screen/userInf.png
   - assets/user_screen/userStat.png
   - assets/user_screen/userTime.png
+  - assets/user_screen/userBack.png
+
+  - assets/home_screen/listIcon.png
+  - assets/home_screen/mapIcon.png
+
   

@@ -1,7 +1,7 @@
 import 'package:car_app/app/pages/auth/auth_screen.dart';
 import 'package:car_app/app/pages/auth/register_screen.dart';
 import 'package:car_app/app/widgets/bottom_nav_bar.dart';
-import 'package:car_app/app/widgets/map_widget.dart';
+import 'package:car_app/app/widgets/home_screen/map_widget.dart';
 import 'package:car_app/logic/bloc/auth_bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
