@@ -27,3 +27,17 @@ flutter:
   assets:
   - assets/auth_screen/backImage.png
   - assets/auth_screen/carIcon.png
+
+  - assets/bottom_nav_bar/car.png
+  - assets/bottom_nav_bar/like.png
+  - assets/bottom_nav_bar/user.png
+  - assets/bottom_nav_bar/plus.png
+  - assets/bottom_nav_bar/chat.png
+
+  - assets/user_screen/userPh.png
+  - assets/user_screen/userChat.png
+  - assets/user_screen/userHome.png
+  - assets/user_screen/userInf.png
+  - assets/user_screen/userStat.png
+  - assets/user_screen/userTime.png
+  
