@@ -1,3 +1,4 @@
+import 'package:car_app/app/widgets/home_screen/home_switch.dart';
 import 'package:car_app/app/widgets/user_screen/user_info_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -194,10 +195,11 @@ class _UserScreenState extends State<UserScreen> {
                                   fontSize: 16,
                                   letterSpacing: -0.5,
                                   color: Color.fromRGBO(255, 105, 105, 1))),
-                        )
+                        ),
                       ],
                     ),
                   ),
+                  const HomeSwitch()
                 ],
               ),
             )
