@@ -15,11 +15,14 @@ class _HomeSwitchState extends State<HomeSwitch> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: const BoxDecoration(boxShadow: [
+      height: 32,
+      decoration:
+          BoxDecoration(borderRadius: BorderRadius.circular(8), boxShadow: [
         BoxShadow(
-          color: shadowColor,
-          blurRadius: 123213,
-        )
+            color: Colors.grey.withOpacity(0.04),
+            spreadRadius: 5,
+            blurRadius: 2,
+            offset: const Offset(2, 1))
       ]),
       child: Center(
         child: AnimatedToggleSwitch<bool>.size(

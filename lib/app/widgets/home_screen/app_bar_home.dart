@@ -1,4 +1,6 @@
+import 'package:car_app/app/widgets/home_screen/custom_textfield.dart';
 import 'package:car_app/app/widgets/home_screen/home_switch.dart';
+import 'package:car_app/app/widgets/notification_icon.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,22 +16,17 @@ class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
       leadingWidth: 200,
       leading: Padding(
         padding: const EdgeInsets.only(left: 20),
-        child: Container(
-          padding: const EdgeInsets.all(8),
-          height: 5,
-          color: Colors.green,
-          child: const TextField(),
-        ),
+        child: Padding(
+            padding: const EdgeInsets.only(top: 8), child: CustomTextField()),
       ),
-      actions: [
-        const HomeSwitch(),
+      actions: const [
+        HomeSwitch(),
+        SizedBox(
+          width: 16,
+        ),
         Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            width: 10,
-            height: 10,
-            color: Colors.red,
-          ),
+          padding: EdgeInsets.all(8.0),
+          child: NotificationIcon(),
         )
       ],
     );

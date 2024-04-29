@@ -199,7 +199,6 @@ class _UserScreenState extends State<UserScreen> {
                       ],
                     ),
                   ),
-                  const HomeSwitch()
                 ],
               ),
             )
