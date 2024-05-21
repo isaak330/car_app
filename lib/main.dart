@@ -5,8 +5,10 @@ import 'package:car_app/app/widgets/home_screen/map_widget.dart';
 import 'package:car_app/logic/bloc/auth_bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
   runApp(const MainApp());
 }
 

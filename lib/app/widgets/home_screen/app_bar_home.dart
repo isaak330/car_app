@@ -12,23 +12,23 @@ class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      leadingWidth: 200,
-      leading: Padding(
-        padding: const EdgeInsets.only(left: 20),
-        child: Padding(
-            padding: const EdgeInsets.only(top: 8), child: CustomTextField()),
-      ),
-      actions: const [
-        HomeSwitch(),
-        SizedBox(
-          width: 16,
+    return SafeArea(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+        child: Row(
+          children: [
+            Expanded(child: CustomTextField()),
+            const HomeSwitch(),
+            // const SizedBox(
+            //   width: 16,
+            // ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: NotificationIcon(),
+            )
+          ],
         ),
-        Padding(
-          padding: EdgeInsets.all(8.0),
-          child: NotificationIcon(),
-        )
-      ],
+      ),
     );
   }
 }

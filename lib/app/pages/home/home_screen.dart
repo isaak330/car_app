@@ -15,16 +15,29 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarHome(),
-      body: SizedBox(
-        height: 500,
+      body: Expanded(
         child: GridView(
-          padding: const EdgeInsets.only(top: 16),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2),
+              mainAxisExtent: 225, crossAxisCount: 2),
           children: const [
-            CarWidget(),
-            // CarWidget(),
-            // CarWidget(),
+            CarWidget(
+              photo: 'assets/home_screen/toyota.png',
+              brand: 'papa',
+              price: 123,
+              score: 2.5,
+            ),
+            CarWidget(
+              photo: 'assets/home_screen/toyota.png',
+              brand: 'papa',
+              price: 123,
+              score: 2.5,
+            ),
+            CarWidget(
+              photo: 'assets/home_screen/toyota.png',
+              brand: 'papa',
+              price: 123,
+              score: 2.5,
+            ),
           ],
         ),
       ),
