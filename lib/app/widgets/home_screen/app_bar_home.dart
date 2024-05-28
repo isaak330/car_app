@@ -18,6 +18,9 @@ class AppBarHome extends StatelessWidget implements PreferredSizeWidget {
         child: Row(
           children: [
             Expanded(child: CustomTextField()),
+            const SizedBox(
+              width: 4,
+            ),
             const HomeSwitch(),
             // const SizedBox(
             //   width: 16,

@@ -1,6 +1,8 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:car_app/const/links.dart';
+import 'package:car_app/logic/repositories/tokens_repo.dart';
 import 'package:dio/dio.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -24,9 +26,9 @@ class AuthRepo {
     )).post('$api/users/api/token/', data: {"email": email, "password": pass});
     print(response.data);
     if (response.statusCode == 202 || response.statusCode == 201) {
-      var aTkn = await Hive.openBox('aTkn');
-      var aToken = await Hive.openBox('aTkn');
-      print('good');
+      var a = response.data['access'];
+      var r = response.data['refresh'];
+      await TokensRepo.writeToken(a, r);
       return true;
     } else {
       print('bad');
