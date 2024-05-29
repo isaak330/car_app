@@ -16,16 +16,18 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 60),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 16),
-            Text(
-              'Избранное',
-              style: GoogleFonts.manrope(
-                  textStyle: const TextStyle(
-                      fontSize: 36, fontWeight: FontWeight.w700)),
+            SafeArea(
+              child: Text(
+                'Избранное',
+                style: GoogleFonts.manrope(
+                    textStyle: const TextStyle(
+                        fontSize: 36, fontWeight: FontWeight.w700)),
+              ),
             ),
             const SizedBox(height: 32),
             Row(
@@ -51,28 +53,29 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                     child: Image.asset('assets/favourite_screen/lines.png')),
               ],
             ),
-            // const SizedBox(height: 16),
+            const SizedBox(height: 16),
             Expanded(
               child: ListView(
+                padding: EdgeInsets.zero,
                 scrollDirection: Axis.vertical,
                 children: const [
                   FavouriteCarWidget(
                     photo: 'assets/home_screen/toyota.png',
-                    name: 'Toyota RAV4 2006sjfgjsgfagkdfkhjadghakdfkhgj',
-                    sum: 2000,
-                    score: 4.9,
-                  ),
-                  FavouriteCarWidget(
-                    photo: 'assets/home_screen/toyota.png',
                     name: 'Toyota RAV4 2006',
                     sum: 2000,
-                    score: 4.9,
+                    score: 4.3,
                   ),
                   FavouriteCarWidget(
-                    photo: 'assets/home_screen/toyota.png',
-                    name: 'Toyota RAV4 2006',
-                    sum: 2000,
-                    score: 4.9,
+                    photo: 'assets/favourite_screen/corolla.png',
+                    name: 'Toyota Corolla XI',
+                    sum: 3200,
+                    score: 4.5,
+                  ),
+                  FavouriteCarWidget(
+                    photo: 'assets/favourite_screen/bmw.png',
+                    name: 'BMW X1 20d',
+                    sum: 4000,
+                    score: 4.8,
                   )
                 ],
               ),

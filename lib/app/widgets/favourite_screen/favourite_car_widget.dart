@@ -27,16 +27,25 @@ class _FavouriteCarWidgetState extends State<FavouriteCarWidget> {
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
-      ),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+                color: Colors.grey.withOpacity(0.1),
+                spreadRadius: 5,
+                blurRadius: 2,
+                offset: const Offset(2, 1))
+          ]),
       child: Row(
         children: [
-          SizedBox(
-              width: 180,
-              height: 130,
-              child: Image.asset(
-                widget.photo,
-              )),
+          Container(
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                image: DecorationImage(
+                    image: AssetImage(widget.photo), fit: BoxFit.cover)),
+            width: 180,
+            height: 130,
+          ),
           // 'assets/home_screen/toyota.png'
           Expanded(
             child: Padding(
@@ -65,17 +74,15 @@ class _FavouriteCarWidgetState extends State<FavouriteCarWidget> {
                         Image.asset(
                           'assets/bottom_nav_bar/car.png',
                           scale: 4,
-                          color: const Color.fromRGBO(251, 213, 80, 1),
+                          color: widget.score > 4.4
+                              ? Colors.green
+                              : const Color.fromRGBO(251, 213, 80, 1),
                         )
                       ],
                     ),
                     const SizedBox(height: 6),
-                    // const Text(
-                    //   'data',
-                    //   overflow: TextOverflow.clip,
-                    // ),
-                    const SizedBox(height: 6),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         GestureDetector(
                           child: Container(
@@ -95,7 +102,12 @@ class _FavouriteCarWidgetState extends State<FavouriteCarWidget> {
                                       color: Colors.white)),
                             ),
                           ),
-                        )
+                        ),
+                        SizedBox(
+                            width: 25,
+                            height: 25,
+                            child:
+                                Image.asset('assets/favourite_screen/like.png'))
                       ],
                     )
                   ],
