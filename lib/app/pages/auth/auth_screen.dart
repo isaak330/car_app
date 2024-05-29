@@ -1,5 +1,7 @@
 import 'package:car_app/app/pages/auth/register_screen.dart';
+import 'package:car_app/app/pages/home/home_screen.dart';
 import 'package:car_app/app/widgets/auth_screen/logo_widget.dart';
+import 'package:car_app/app/widgets/bottom_nav_bar.dart';
 import 'package:car_app/app/widgets/home_screen/map_widget.dart';
 import 'package:car_app/const/colors.dart';
 import 'package:car_app/logic/bloc/auth_bloc/auth_bloc.dart';
@@ -134,7 +136,7 @@ class _AuthScreenState extends State<AuthScreen> {
                   Navigator.pushAndRemoveUntil(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const MapWidget()),
+                          builder: (context) => const BottomNavBar()),
                       (route) => false);
                 }
               },

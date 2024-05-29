@@ -8,6 +8,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 class AuthRepo {
   static Future logIn(String email, String pass) async {
+    print("--- $email");
+    print("--- $pass");
     var response = await Dio(BaseOptions(
       validateStatus: (status) {
         switch (status) {
@@ -23,7 +25,8 @@ class AuthRepo {
             return false;
         }
       },
-    )).post('$api/users/api/token/', data: {"email": email, "password": pass});
+    )).post('$api/users-api/api/token/',
+        data: {"email": email, "password": pass});
     print(response.data);
     if (response.statusCode == 202 || response.statusCode == 201) {
       var a = response.data['access'];

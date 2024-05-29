@@ -25,7 +25,7 @@ class _MainAppState extends State<MainApp> {
     return BlocProvider(
       create: (context) => AuthBloc(),
       child: const MaterialApp(
-          debugShowCheckedModeBanner: false, home: BottomNavBar()),
+          debugShowCheckedModeBanner: false, home: AuthScreen()),
     );
   }
 }
