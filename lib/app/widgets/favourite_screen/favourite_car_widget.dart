@@ -43,7 +43,7 @@ class _FavouriteCarWidgetState extends State<FavouriteCarWidget> {
                 borderRadius: BorderRadius.circular(12),
                 image: DecorationImage(
                     image: AssetImage(widget.photo), fit: BoxFit.cover)),
-            width: 180,
+            width: 150,
             height: 130,
           ),
           // 'assets/home_screen/toyota.png'
