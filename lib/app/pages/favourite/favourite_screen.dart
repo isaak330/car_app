@@ -41,7 +41,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                             Image.asset('assets/favourite_screen/arrows.png')),
                     const SizedBox(width: 4),
                     Text(
-                      'По удаленности',
+                      'По возрастанию рейтинга',
                       style: GoogleFonts.manrope(
                           textStyle: const TextStyle(
                               fontSize: 14, fontWeight: FontWeight.w500)),
