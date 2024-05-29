@@ -25,11 +25,13 @@ class CarWidget extends StatelessWidget {
             context,
             MaterialPageRoute(
                 builder: (context) => CarViewScreen(
-                    name: 'Toyota RAV4 2006',
-                    price: price,
-                    description:
-                        'Стильный и удобный, этот автомобиль идеально подходит для выходных приключений, деловых поездок или просто уютных поездок по городу. Гибкие цены, обсуждаемый залог и надежное техническое состояние. Воплотите свои планы в реальность с этим надежным спутником на колесах!',
-                    user: 'Сергей')));
+                      name: 'Toyota RAV4 2006',
+                      price: price,
+                      description:
+                          'Стильный и удобный, этот автомобиль идеально подходит для выходных приключений, деловых поездок или просто уютных поездок по городу. Гибкие цены, обсуждаемый залог и надежное техническое состояние. Воплотите свои планы в реальность с этим надежным спутником на колесах!',
+                      user: 'Сергей',
+                      score: 4.4,
+                    )));
       },
       child: Container(
         margin: const EdgeInsets.all(10),
@@ -47,9 +49,6 @@ class CarWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ClipRRect(
-            //     borderRadius: BorderRadius.circular(12),
-            //     child:
             Container(
               height: 135,
               decoration: BoxDecoration(
