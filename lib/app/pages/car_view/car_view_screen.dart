@@ -1,3 +1,4 @@
+import 'package:car_app/app/pages/order_screen/order_screen.dart';
 import 'package:car_app/app/widgets/car_view/options_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -98,6 +99,7 @@ class CarViewScreen extends StatelessWidget {
                     height: 150,
                   ),
                   GestureDetector(
+                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=> OrderScreen())),
                     child: Container(
                       height: 55,
                       padding:
@@ -119,6 +121,8 @@ class CarViewScreen extends StatelessWidget {
                 ],
               ),
             ),
+              SizedBox(height: 23,)
+
           ],
         ),
       ),
