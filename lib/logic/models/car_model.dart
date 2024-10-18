@@ -1,21 +1,18 @@
-class CarModel {
-  final String photo;
-  final String title;
-  final int price;
-  final double score;
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-  CarModel(
-      {required this.photo,
-      required this.title,
-      required this.price,
-      required this.score});
 
-  static CarModel fromJson(Map<String, dynamic> json) {
-    return CarModel(
-      photo: "photo",
-      title: 'title',
-      price: 12,
-      score: 123,
-    );
-  }
+part 'car_model.freezed.dart';
+
+@freezed
+class CarModel with _$CarModel {
+  const factory CarModel({
+  required String photo,
+  required String title,
+  required int price,
+  required double score
+  }) = _CarModel;
+
+  factory CarModel.fromJson(Map<String,Object?> json)
+  => _$CarModelFromJson(json);
 }

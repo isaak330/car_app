@@ -5,15 +5,24 @@ import 'package:car_app/app/widgets/home_screen/map_widget.dart';
 import 'package:car_app/logic/bloc/auth_bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async {
   await Hive.initFlutter();
-  runApp(const MainApp());
+  runApp( MainApp());
 }
 
 class MainApp extends StatefulWidget {
-  const MainApp({super.key});
+   MainApp({super.key});
+
+    final GoRouter _router = GoRouter(
+    initialLocation: '/main',
+    routes: [],
+    redirect: (BuildContext context, state) {
+      return null;
+    },
+  );
 
   @override
   State<MainApp> createState() => _MainAppState();
