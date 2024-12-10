@@ -1,3 +1,4 @@
+import 'package:car_app/app/pages/add_carr/add_car_screen.dart';
 import 'package:car_app/app/pages/favourite/favourite_screen.dart';
 import 'package:car_app/app/pages/home/home_screen.dart';
 import 'package:car_app/app/pages/user/user_screen.dart';
@@ -18,7 +19,7 @@ class _BottomNavBar extends State<BottomNavBar> {
   static final List<Widget> _pages = <Widget>[
     const HomeScreen(),
     const FavouriteScreen(),
-    const HomeScreen(),
+    const AddCarScreen(),
     const HomeScreen(),
     const UserScreen()
   ];

@@ -1,5 +1,6 @@
 import 'package:car_app/app/pages/auth/auth_screen.dart';
 import 'package:car_app/app/pages/auth/register_screen.dart';
+import 'package:car_app/app/pages/home/home_screen.dart';
 import 'package:car_app/app/widgets/bottom_nav_bar.dart';
 import 'package:car_app/app/widgets/home_screen/map_widget.dart';
 import 'package:car_app/logic/bloc/auth_bloc/auth_bloc.dart';
@@ -34,7 +35,7 @@ class _MainAppState extends State<MainApp> {
     return BlocProvider(
       create: (context) => AuthBloc(),
       child: const MaterialApp(
-          debugShowCheckedModeBanner: false, home: AuthScreen()),
+          debugShowCheckedModeBanner: false, home: BottomNavBar()),
     );
   }
 }
